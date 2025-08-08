@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right,white, #ffa0e7);
+      color: #000;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 60px auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px 40px;
+      border-radius: 20px;
+      border: 3px solid #000000;
+      text-align: center;
+      backdrop-filter: blur(5px);
+    }
+
+    .container h2 {
+      font-size: 30px;
+    }
+
+    .form-group {
+      margin: 15px 0;
+      text-align: left;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #333;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+
+    .checkbox {
+      text-align: left;
+      margin-top: 10px;
+    }
+
+    .btn {
+      background-color: #000;
+      color: #fff;
+      padding: 10px 25px;
+      margin-top: 20px;
+      border: 2px solid #000;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    a {
+      text-decoration: none;
+      color: blue;
+    }
+
+    #secure-page {
+      display: none;
+      text-align: center;
+      margin-top: 50px;
+      font-size: 22px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="login-form">
+    <h2>Login</h2>
+    <div class="form-group">
+      <label>Username:</label>
+      <input type="text" id="login-username" placeholder="Enter your email">
+    </div>
+    <div class="form-group">
+      <label>Password:</label>
+      <input type="password" id="login-password" placeholder="Enter password">
+    </div>
+    <div class="checkbox">
+      <input type="checkbox" id="remember"> Remember me
+    </div>
+    <div class="form-group">
+      <a href="resetpassword.html">Forget password?</a>
+    </div>
+    <button class="btn" onclick="login()">Login</button>
+    <p>Don't have an account? <a href="#" onclick="showRegister()">Create account</a></p>
+  </div>
+
+  <div class="container" id="register-form" style="display:none;">
+    <h2>Create Account</h2>
+    <div class="form-group">
+      <label>Username:</label>
+      <input type="text" id="reg-username" placeholder="Choose a username">
+    </div>
+    <div class="form-group">
+      <label>Password:</label>
+      <input type="password" id="reg-password" placeholder="Choose a password">
+    </div>
+    <button class="btn" onclick="register()">Register</button>
+    <p>Already have an account? <a href="#" onclick="showLogin()">Back to login</a></p>
+  </div>
+
+  <div id="secure-page">
+    <h2>Welcome to the Secured Page 🎉</h2>
+    <p>You are successfully logged in!</p>
+    <button class="btn" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    let users = {};
+
+    function showRegister() {
+      document.getElementById("login-form").style.display = "none";
+      document.getElementById("register-form").style.display = "block";
+    }
+
+    function showLogin() {
+      document.getElementById("register-form").style.display = "none";
+      document.getElementById("login-form").style.display = "block";
+    }
+
+    function register() {
+      const username = document.getElementById("reg-username").value;
+      const password = document.getElementById("reg-password").value;
+
+      if (username && password) {
+        users[username] = password;
+        alert("Registered successfully!");
+        showLogin();
+      } else {
+        alert("Please fill in both fields.");
+      }
+    }
+
+    function login() {
+      const username = document.getElementById("login-username").value;
+      const password = document.getElementById("login-password").value;
+
+      if (users[username] && users[username] === password) {
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("secure-page").style.display = "block";
+      } else {
+        alert("Invalid credentials!");
+      }
+    }
+
+    function logout() {
+      document.getElementById("secure-page").style.display = "none";
+      showLogin();
+    }
+  </script>
+</body>
+</html>
