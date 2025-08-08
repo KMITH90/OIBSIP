@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do List Web App</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+        margin: 0;
+        background-image: url("https://images.pexels.com/photos/7130555/pexels-photo-7130555.jpeg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .form-container, .table-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 400px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .table-container {
+      width: 800px;
+    }
+    .form-container input,
+    .form-container textarea,
+    .form-container select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    .form-container button {
+      background-color: #4e54c8;
+      color: white;
+      padding: 10px;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .form-container button:hover {
+      background-color: #3e42a6;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    tr.task {
+      background-color: #fff;
+      border: 1px solid #eee;
+      border-radius: 8px;
+    }
+    .action-btn {
+      background-color: #dc3545;
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+    .edit-btn {
+      background-color: #007bff;
+    }
+    .edit-btn:hover {
+      background-color: #0056b3;
+    }
+    .action-btn:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <h1>To-Do List Web App</h1>
+  <div class="container">
+    <div class="form-container">
+      <form id="taskForm">
+        <input type="text" id="title" placeholder="Title" required />
+        <textarea id="description" rows="4" placeholder="Description" required></textarea>
+        <input type="date" id="dueDate" required />
+        <select id="priority">
+          <option value="low">Low Priority</option>
+          <option value="medium">Medium Priority</option>
+          <option value="high">High Priority</option>
+        </select>
+        <input type="time" id="time" required />
+        <button type="submit">Add Task</button>
+      </form>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Due</th>
+            <th>Priority</th>
+            <th>Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="taskList">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const taskForm = document.getElementById('taskForm');
+    const taskList = document.getElementById('taskList');
+
+    taskForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const title = document.getElementById('title').value;
+      const desc = document.getElementById('description').value;
+      const dueDate = document.getElementById('dueDate').value;
+      const priority = document.getElementById('priority').value;
+      const time = document.getElementById('time').value;
+
+      const row = document.createElement('tr');
+      row.classList.add('task');
+      row.innerHTML = `
+        <td>${title}</td>
+        <td>${desc}</td>
+        <td>${dueDate}</td>
+        <td>${priority}</td>
+        <td>${time}</td>
+        <td>
+          <button class="action-btn edit-btn">Edit</button>
+          <button class="action-btn delete-btn">X</button>
+        </td>
+      `;
+      taskList.appendChild(row);
+
+      taskForm.reset();
+    });
+
+    taskList.addEventListener('click', function (e) {
+      const row = e.target.closest('tr');
+      if (e.target.classList.contains('delete-btn')) {
+        row.remove();
+      } else if (e.target.classList.contains('edit-btn')) {
+        const cells = row.querySelectorAll('td');
+        document.getElementById('title').value = cells[0].innerText;
+        document.getElementById('description').value = cells[1].innerText;
+        document.getElementById('dueDate').value = cells[2].innerText;
+        document.getElementById('priority').value = cells[3].innerText;
+        document.getElementById('time').value = cells[4].innerText;
+        row.remove();
+      }
+    });
+  </script>
+</body>
+</html>
