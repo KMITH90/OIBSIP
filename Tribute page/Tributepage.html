@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tribute page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+      padding: 40px;
+    }
+
+    .left-side {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .background-art {
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+    }
+
+    .profile-img {
+      position: absolute;
+      bottom: 30px;
+      right: 5px;
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid rgb(2, 46, 109);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      background-color: white;
+    }
+
+    .right-side {
+      flex: 1;
+      text-align: justify;
+    }
+
+    .right-side h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .right-side p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    hr {
+      margin: 30px 0 10px;
+      border: none;
+      border-top: 1px solid #ccc;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .profile-img {
+        position: static;
+        margin: 20px auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-side">
+      <!-- Flower Background -->
+      <img src="https://static.vecteezy.com/system/resources/previews/028/695/561/non_2x/indian-flag-abstract-background-wallpaper-for-independence-day-on-15-august-ai-generative-free-photo.jpg" alt="Background Art" class="background-art" />
+      <!-- Dr. Kalam Image at Bottom-Right -->
+      <img src="apj-banner.png" alt="Dr. A.P.J. Abdul Kalam" class="profile-img" />
+    </div>
+
+    <div class="right-side">
+      <h1>Dr. A.P.J. Abdul Kalam</h1>
+      <p>
+        Dr. A.P.J. Abdul Kalam, fondly remembered as the "Missile Man of India," was a visionary scientist, inspirational teacher, and the 11th President of India. Born on 15 October 1931 in Rameswaram, Tamil Nadu, he rose from humble beginnings to become a key figure in India's space and missile development programs, playing a pivotal role in the 1998 Pokhran nuclear tests. As President, he won the hearts of millions, especially the youth, with his humility, wisdom, and dedication. Dr. Kalam was also a prolific author, known for books like Wings of Fire and Ignited Minds, and remained a passionate advocate for education and innovation until his last breath on 27 July 2015. His life continues to inspire generations to dream big, work hard, and serve the nation selflessly. He will forever be remembered as a true role model and a guiding light for India’s future.
+      </p>
+      <hr />
+      <p class="footer">Made by MITRA K</p>
+    </div>
+  </div>
+</body>
+</html>
